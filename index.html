@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>LegiX Force Forum — Ультра-неоновое издание</title>
+  <!-- Подключаем наш глобальный CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- 
+  1) Параллакс-фон (несколько слоёв). 
+  Для упрощения — один div с классом .parallax-bg, 
+  где фоновое изображение или градиент на CSS.
+-->
+<div class="parallax-bg"></div>
+
+<!-- 
+  2) Контейнер для снежинок (JS будет добавлять <div class="snowflake">)
+-->
+<div id="snow-container"></div>
+
+<!-- 
+  3) Шапка (header). 
+  Можем добавить какое-то «светящееся» лого, меню.
+-->
+<header>
+  <div class="logo">
+    <h1>LegiX Force Forum</h1>
+  </div>
+  <nav class="top-nav">
+    <ul>
+      <li><a href="#" data-tab="home" class="active-tab">Главная</a></li>
+      <li><a href="#" data-tab="forum">Форум</a></li>
+      <li><a href="#" data-tab="news">Новости</a></li>
+      <li><a href="#" data-tab="profile">Профиль</a></li>
+      <li><a href="#" data-tab="login">Вход / Регистрация</a></li>
+      <!-- Прямая ссылка на Discord -->
+      <li><a href="https://discord.gg/legixforce" target="_blank" class="discord-link">Discord</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- 
+  4) Основная часть (main). 
+  Здесь наши вкладки (home, forum, news, profile, login).
+-->
+<main>
+  <!-- Вкладка: Home (Главная) -->
+  <section id="home" class="tab-section active-section">
+    <h2 class="neon-title">Добро пожаловать в сообщество LegiX Force!</h2>
+    <p>
+      Мы рады видеть вас в этом месте, полном неонового свечения и зимней магии.
+      Обсуждайте игры, мемы, участвуйте в ивентах и просто наслаждайтесь атмосферой!
+      <br/>
+      Не забудьте зайти к нам в 
+      <a href="https://discord.gg/legixforce" target="_blank">Discord</a>!
+    </p>
+    <div class="highlight-box">
+      <h3>Последнее объявление</h3>
+      <p>
+        Совсем скоро пройдёт большой **Новогодний ивент**!  
+        Подробности ищите во вкладке <strong>«Новости»</strong> или в 
+        <a href="https://discord.gg/legixforce" target="_blank">нашем Discord</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Вкладка: Форум -->
+  <section id="forum" class="tab-section">
+    <h2>Разделы Форума</h2>
+    <div class="forum-sections">
+      <!-- Пример одного раздела -->
+      <div class="forum-section threeD-hover">
+        <h3>Раздел: Общий чат</h3>
+        <p>Общайтесь на любые темы, скидывайте мемы, узнавайте новости и т.д.</p>
+        <button class="open-topics" data-section-id="section1">Перейти к темам</button>
+        <!-- Модальное окно со списком тем -->
+        <div class="modal" id="section1-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Темы в «Общий чат»</h3>
+            <ul>
+              <li><a href="#">Приветствие новых участников</a></li>
+              <li><a href="#">Любимые игры участников LegiX Force</a></li>
+              <li><a href="#">Обсуждаем новые мемы</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Второй раздел -->
+      <div class="forum-section threeD-hover">
+        <h3>Раздел: Оффтоп</h3>
+        <p>Разговоры на любые темы, не относящиеся к проектам.</p>
+        <button class="open-topics" data-section-id="section2">Перейти к темам</button>
+        <div class="modal" id="section2-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Темы в «Оффтоп»</h3>
+            <ul>
+              <li><a href="#">Шутки и юмор</a></li>
+              <li><a href="#">Случайные обсуждения</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Третий раздел -->
+      <div class="forum-section threeD-hover">
+        <h3>Раздел: Новости и события</h3>
+        <p>Последние анонсы, патчноуты, мероприятия, турниры, ивенты.</p>
+        <button class="open-topics" data-section-id="section3">Перейти к темам</button>
+        <div class="modal" id="section3-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Темы в «Новости и события»</h3>
+            <ul>
+              <li><a href="#">Анонс Новогоднего ивента</a></li>
+              <li><a href="#">Обновление 2.0 для сервера</a></li>
+              <li><a href="#">Новый бот LegiXBot</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Вкладка: Новости -->
+  <section id="news" class="tab-section">
+    <h2>Новости LegiX Force</h2>
+    <div class="news-list">
+      <article class="news-item sparkle-bg">
+        <h3>Грандиозный ивент «Winter Bot Bash 2024»</h3>
+        <p>
+          С 25 декабря стартует <strong>«Winter Bot Bash 2024»</strong>, где вы сможете
+          участвовать в викторинах, собирать праздничные награды и даже выиграть доступ
+          к закрытым каналам! Подключайтесь к 
+          <a href="https://discord.gg/legixforce" target="_blank">нашему Discord</a>, 
+          чтобы не пропустить детали!
+        </p>
+      </article>
+
+      <article class="news-item threeD-hover">
+        <h3>Обновление дизайна сайта</h3>
+        <p>
+          Мы полностью переработали внешний вид, добавив анимации и эффекты. Теперь всё
+          сияет, сверкает и дарит праздничное настроение!
+        </p>
+      </article>
+
+      <article class="news-item threeD-hover">
+        <h3>Скоро: улучшение системы ЛС</h3>
+        <ul>
+          <li>Улучшенный поиск по перепискам</li>
+          <li>Возможность прикреплять файлы и ссылки</li>
+          <li>Новые смайлы и гифки</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- Вкладка: Профиль -->
+  <section id="profile" class="tab-section">
+    <h2>Ваш профиль</h2>
+    <div class="profile-info">
+      <p>Ник: <span id="profile-username">Guest</span></p>
+      <p>Статус: <span id="profile-status">Гость</span></p>
+    </div>
+  </section>
+
+  <!-- Вкладка: Вход / Регистрация -->
+  <section id="login" class="tab-section">
+    <h2>Вход / Регистрация</h2>
+    <div class="auth-forms">
+      <!-- Форма входа -->
+      <form id="login-form">
+        <h3>Вход</h3>
+        <label for="login-username">Логин</label>
+        <input type="text" id="login-username" required />
+        <label for="login-password">Пароль</label>
+        <input type="password" id="login-password" required />
+        <button type="submit" class="button-animated-border">Войти</button>
+      </form>
+
+      <!-- Форма регистрации -->
+      <form id="register-form">
+        <h3>Регистрация</h3>
+        <label for="register-username">Логин</label>
+        <input type="text" id="register-username" required />
+        <label for="register-password">Пароль</label>
+        <input type="password" id="register-password" required />
+        <label for="register-email">Email</label>
+        <input type="email" id="register-email" required />
+        <button type="submit" class="button-animated-border">Зарегистрироваться</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- Футер -->
+<footer>
+  <p>© 2024 LegiX Force | Наш Discord: 
+    <a href="https://discord.gg/legixforce" target="_blank">discord.gg/legixforce</a>
+  </p>
+</footer>
+  
+  <!-- Подключаем JS -->
+<script src="app.js"></script>
+</body>
+</html>
