@@ -10,8 +10,8 @@
   --color-highlight: #fff000;  /* неоново-жёлтый (пример) */
 
   /* Фоновые цвета */
-  --bg-dark: #0a0a0a;  
-  --bg-medium: #1c1c1c; 
+  --bg-dark: #0a0a0a;
+  --bg-medium: #1c1c1c;
   --bg-panel: rgba(255,255,255,0.07);
 
   /* Текст и тени */
@@ -26,7 +26,7 @@
   --transition-fast: 0.2s ease-in-out;
   --transition-medium: 0.4s ease-in-out;
 
-  /* Прозрачность снега — иногда полезно ослабить, чтобы не было слишком ярко */
+  /* Прозрачность снега */
   --snow-opacity: 0.8;
 }
 
@@ -52,21 +52,57 @@ body {
 }
 
 /************************************************************
- * ЭФФЕКТ ПАДАЮЩЕГО СНЕГА (CSS + HTML)
- * Для большого количества снежинок лучше генерировать через JS.
+ * ПАРАЛЛАКС-ФОН
  ************************************************************/
-.snow-container {
+.parallax-bg-layer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -10; /* Слои позади всего контента */
+  opacity: 0.3; /* Можно менять для усиления/ослабления фона */
+}
+
+/* Первый слой (радиальный тёмно-синий градиент) */
+.layer-1 {
+  background: radial-gradient(circle at center, #041527, #0a192b);
+  animation: floatLayer1 10s infinite ease-in-out; /* Покачивание */
+}
+
+/* Второй слой (линейный градиент) */
+.layer-2 {
+  background: linear-gradient(120deg, #030917, #050d1d);
+  animation: floatLayer2 12s infinite ease-in-out;
+}
+
+/************************************************************
+ * ПИКСЕЛЬНЫЙ ДОЖДЬ
+ ************************************************************/
+.pixel-rain-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* чтобы не мешать кликам */
+  pointer-events: none;
+  z-index: 9980; /* Ниже снега, выше заднего фона */
+}
+
+/************************************************************
+ * ЭФФЕКТ ПАДАЮЩЕГО СНЕГА
+ ************************************************************/
+#snow-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
   z-index: 9999;
   overflow: hidden;
 }
 
-/* Каждая снежинка: простой div или i/элемент */
 .snowflake {
   position: absolute;
   top: -2rem;
@@ -79,7 +115,6 @@ body {
 }
 
 @keyframes fall {
-  /* Сверху вниз + вращение */
   0% {
     transform: translateY(-150%) rotate(0deg);
   }
@@ -92,12 +127,10 @@ body {
   }
 }
 
-/* Можно вручную настраивать .snowflake:nth-child() — либо делать это через JS */
-
 /************************************************************
  * АНИМАЦИИ КЛЮЧЕВЫХ КАДРОВ
  ************************************************************/
-/* 1) Пульсация неона */
+/* Пульсация неона */
 @keyframes pulseNeon {
   0% {
     box-shadow: 0 0 10px var(--color-primary);
@@ -109,7 +142,7 @@ body {
     box-shadow: 0 0 10px var(--color-primary);
   }
 }
-/* 2) Медленный пульс */
+/* Медленный пульс */
 @keyframes slowPulse {
   0% {
     transform: scale(1);
@@ -124,7 +157,7 @@ body {
     box-shadow: 0 0 8px var(--color-secondary);
   }
 }
-/* 3) Появление с «масштабом» */
+/* Появление с «масштабом» */
 @keyframes scaleIn {
   0% {
     transform: scale(0.6);
@@ -135,7 +168,7 @@ body {
     opacity: 1;
   }
 }
-/* 4) Плавное свечение (эффект дышащего неона) */
+/* Плавное свечение (неоновое дыхание) */
 @keyframes neonBreath {
   0%, 100% {
     text-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary);
@@ -144,18 +177,20 @@ body {
     text-shadow: 0 0 20px var(--color-primary), 0 0 40px var(--color-primary);
   }
 }
-/* 5) Параллакс слоя (пример) */
-@keyframes parallaxShift {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(20px);
-  }
+/* Покачивание слоёв (параллакс) */
+@keyframes floatLayer1 {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
-/* 6) Fade In (плавное появление) */
+@keyframes floatLayer2 {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(10px); }
+  100% { transform: translateY(0px); }
+}
+/* Fade In (плавное появление) */
 @keyframes fadeIn {
-  0% { opacity: 0; }
+  0%   { opacity: 0; }
   100% { opacity: 1; }
 }
 
@@ -184,6 +219,8 @@ header {
   list-style: none;
   display: flex;
   gap: 25px;
+  flex-wrap: wrap; /* Чтобы при узких экранах меню переносилось */
+  justify-content: center;
 }
 .top-nav li {
   position: relative;
@@ -246,7 +283,7 @@ h3 {
 }
 
 /************************************************************
- * HIGHLIGHT-BOX, УКАЗАТЕЛИ, ЭЛЕМЕНТЫ
+ * HIGHLIGHT-BOX
  ************************************************************/
 .highlight-box {
   background: var(--bg-panel);
@@ -264,7 +301,7 @@ h3 {
 }
 
 /************************************************************
- * ФОРУМ
+ * ФОРУМ / КАРТОЧКИ / МОДАЛЬНЫЕ ОКНА
  ************************************************************/
 .forum-sections {
   display: flex;
@@ -322,7 +359,7 @@ h3 {
 }
 .modal-content {
   background: var(--bg-panel);
-  margin: 80px auto; 
+  margin: 80px auto;
   padding: 20px;
   max-width: 600px;
   border-radius: 10px;
@@ -343,7 +380,7 @@ h3 {
 }
 
 /************************************************************
- * РАЗДЕЛ "НОВОСТИ"
+ * НОВОСТИ
  ************************************************************/
 .news-list {
   display: flex;
@@ -377,7 +414,7 @@ h3 {
 }
 
 /************************************************************
- * Профиль
+ * ПРОФИЛЬ
  ************************************************************/
 .profile-info {
   background: var(--bg-panel);
@@ -398,7 +435,7 @@ h3 {
 }
 
 /************************************************************
- * Вход / Регистрация
+ * ВХОД / РЕГИСТРАЦИЯ
  ************************************************************/
 .auth-forms {
   display: flex;
@@ -472,7 +509,7 @@ footer a {
 }
 
 /************************************************************
- * ДОП. ДЕКОРАТИВНЫЕ ЭФФЕКТЫ
+ * ДОП. ЭФФЕКТЫ
  ************************************************************/
 /* 1) Анимированный градиент-текст */
 .gradient-text {
@@ -485,23 +522,12 @@ footer a {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
-
 /* 2) 3D-объём при наведении */
 .threeD-hover:hover {
   transform: perspective(600px) rotateX(5deg) rotateY(5deg) scale(1.03);
   box-shadow: 0 10px 20px rgba(0,0,0,0.5), var(--neon-shadow);
 }
-
-/* 3) Лазерная линия */
-.laser-line {
-  height: 2px;
-  background: var(--color-primary);
-  box-shadow: 0 0 10px var(--color-primary);
-  margin: 20px 0;
-  animation: pulseNeon 2s infinite;
-}
-
-/* 4) "Сверкающий" фон */
+/* 3) "Сверкающий" фон (sparkle) */
 .sparkle-bg {
   position: relative;
   overflow: hidden;
@@ -516,38 +542,10 @@ footer a {
   opacity: 0.15;
 }
 @keyframes swirl {
-  0% { transform: rotate(0deg); }
+  0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
-/* 5) Подсказка (tooltip) при наведении */
-.tooltip-wrapper {
-  position: relative;
-  display: inline-block;
-}
-.tooltip-wrapper:hover .tooltip-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-.tooltip-content {
-  position: absolute;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background: var(--bg-panel);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 14px;
-  color: #fff;
-  box-shadow: var(--neon-shadow);
-  white-space: nowrap;
-  opacity: 0;
-  transition: var(--transition-fast);
-  pointer-events: none;
-}
-
-/* 6) Кнопка с анимированным бордером */
+/* 4) Кнопка с анимированным бордером */
 .button-animated-border {
   position: relative;
   overflow: hidden;
@@ -575,169 +573,15 @@ footer a {
   opacity: 0.3;
 }
 @keyframes borderSpin {
-  0% { transform: rotate(0deg); }
+  0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
-/************************************************************
- * МОБИЛЬНАЯ АДАПТАЦИЯ (пример)
- ************************************************************/
-@media (max-width: 768px) {
-  .top-nav ul {
-    gap: 15px;
-  }
-  main {
-    padding: 10px;
-  }
-  .forum-sections {
-    flex-direction: column;
-    align-items: center;
-  }
-  .forum-section {
-    width: 90%;
-    max-width: 400px;
-  }
-  .auth-forms {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-/************************************************************
- * EXTREME NEON EXTENSIONS
- * Добавляем новые анимации, эффекты и классы, чтобы сделать
- * дизайн ещё более насыщенным и зрелищным.
- ************************************************************/
-
-/* ----------------------------------------------------------
-   1) БОЛЬШЕ «СНЕЖНЫХ» ЭФФЕКТОВ
-   Теперь не только падают снежинки, но и «ветер» уносит их.
------------------------------------------------------------ */
-/* Этот класс можно использовать на снежинках, чтобы они смещались по горизонтали */
-@keyframes snowDrift {
-  0% {
-    transform: translate(0, -100vh) rotate(0deg);
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-    transform: translate(10vw, 50vh) rotate(180deg);
-  }
-  100% {
-    transform: translate(-10vw, 110vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-/* Пример использования:
-   <div class="snowflake snowdrift"></div>
-   Тогда снежинка будет отклоняться в сторону.
-*/
-.snowdrift {
-  animation: snowDrift 10s linear infinite;
-  animation-delay: calc(1s * var(--random-delay, 1)); /* можно подмешивать JS */
-}
-
-/* Хотите снег разного цвета? Допустим, класс .snow-rose */
-.snow-rose {
-  background: var(--color-secondary);
-}
-
-/* ----------------------------------------------------------
-   2) ЭФФЕКТ «ИСКРЫ» (ЧИСТО ДЕКОРАТИВНО)
-   Крохотные шарики, которые «выстреливают» наружу, 
-   можно помещать внутри блочных элементов.
------------------------------------------------------------ */
-@keyframes spark {
-  0%   { transform: scale(0);   opacity: 1; }
-  50%  { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(0);   opacity: 0; }
-}
-.spark-container {
-  position: relative;
-  overflow: visible;
-}
-.spark {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: var(--color-highlight);
-  border-radius: 50%;
-  animation: spark 1s ease-out forwards;
-}
-/*
-Пример добавления искр через JS или вручную:
-<div class="spark-container">
-  Текст...
-  <div class="spark" style="left:10px; top:0;"></div>
-  <div class="spark" style="left:30px; top:5px;"></div>
-  ...
-</div>
-*/
-
-/* ----------------------------------------------------------
-   3) ДОПОЛНИТЕЛЬНЫЙ «ФЛИП» ЭФФЕКТ ДЛЯ КАРТОЧЕК
-   При наведении происходит переворот (flip).
------------------------------------------------------------ */
-@keyframes flipIn {
-  from { transform: rotateY(90deg); opacity: 0; }
-  to   { transform: rotateY(0deg);   opacity: 1; }
-}
-@keyframes flipOut {
-  from { transform: rotateY(0deg);   opacity: 1; }
-  to   { transform: rotateY(90deg);  opacity: 0; }
-}
-
-.flip-card {
-  perspective: 800px;
-}
-.flip-card-inner {
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
-}
-.flip-card-front, 
-.flip-card-back {
-  position: absolute;
-  width: 100%; 
-  height: 100%;
-  backface-visibility: hidden;
-  top: 0; left: 0;
-  border-radius: 8px;
-}
-.flip-card-front {
-  /* передняя сторона */
-}
-.flip-card-back {
-  /* задняя сторона */
-  transform: rotateY(180deg);
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Пример использования:
-  <div class="forum-section flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        ... передняя сторона ...
-      </div>
-      <div class="flip-card-back">
-        ... задняя сторона ...
-      </div>
-    </div>
-  </div>
-*/
-
-/* ----------------------------------------------------------
-   4) НЕОНОВЫЙ «ТЕКСТОВОЙ» ВЫСТРЕЛ (LASER TEXT)
-   Текст выглядит так, будто появляется лазером.
------------------------------------------------------------ */
+/* 5) Лазер-текст */
 .laser-text {
   display: inline-block;
   position: relative;
   color: var(--color-primary);
-  overflow: hidden; /* скрываем «луч» */
+  overflow: hidden;
 }
 .laser-text::after {
   content: "";
@@ -755,13 +599,7 @@ footer a {
   50%  { left: 100%; }
   100% { left: 200%; }
 }
-/* Пример:
-<h2 class="laser-text">LegiX Force</h2>
-*/
-
-/* ----------------------------------------------------------
-   5) «ПЕРЕЛИВАЮЩИЙСЯ» БОРДЕР У БЛОКОВ (РАДУЖНЫЙ)
------------------------------------------------------------ */
+/* 6) Радужный бордер */
 .rainbow-border {
   position: relative;
   border-radius: 8px;
@@ -789,65 +627,7 @@ footer a {
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-/* Пример:
-<div class="forum-section rainbow-border">
-  ... 
-</div>
-*/
-
-/* ----------------------------------------------------------
-   6) ФОН С «ПАДАЮЩИМИ ПИКСЕЛЯМИ» (PIXEL RAIN)
-   Похоже на матрицу, но в неоновых цветах.
------------------------------------------------------------ */
-@keyframes pixelRain {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(300%); }
-}
-.pixel-rain {
-  position: absolute;
-  width: 2px;
-  height: 50vh; /* «дождь» занимает 50% высоты экрана */
-  background: var(--color-secondary);
-  animation: pixelRain 2s linear infinite;
-  opacity: 0.5;
-}
-.pixel-rain:nth-child(odd) {
-  background: var(--color-primary);
-}
-.pixel-rain:nth-child(3n) {
-  background: var(--color-highlight);
-  opacity: 0.7;
-}
-/* Для использования:
-<div class="pixel-rain-container">
-  <div class="pixel-rain" style="left: 10%; animation-duration: 2.5s;"></div>
-  <div class="pixel-rain" style="left: 15%; animation-duration: 3s;"></div>
-  ... и т.д.
-</div>
-*/
-
-/* ----------------------------------------------------------
-   7) «ВОЛНЫ» / «Ряби» на фоне (например, при наведении)
------------------------------------------------------------ */
-@keyframes ripple {
-  0%   { transform: scale(0);   opacity: 0.8; }
-  100% { transform: scale(8);   opacity: 0;   }
-}
-.ripple-effect {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--color-primary);
-  animation: ripple 1s ease-out forwards;
-}
-/* Пример использования: 
-   При клике (или наведении) на блок:
-   JS вставляет <span class="ripple-effect" style="left:..., top:..."></span>
-*/
-
-/* ----------------------------------------------------------
-   8) «ПАРЯЩАЯ» ПАНЕЛЬ (HOVER-FLOAT)
-   Лёгкое парение при наведении
------------------------------------------------------------ */
+/* 7) Hover-Float */
 .hover-float:hover {
   animation: floatHover 2s infinite alternate ease-in-out;
 }
@@ -855,62 +635,151 @@ footer a {
   0%   { transform: translateY(0px); }
   100% { transform: translateY(-8px); }
 }
-
-/* ----------------------------------------------------------
-   9) ДОП. «КОСМИЧЕСКИЙ» ГРАДИЕНТ ДЛЯ ТЕКСТА
------------------------------------------------------------ */
-.cosmic-gradient-text {
-  background: linear-gradient(270deg, #ff0080, #00b8ff, #fff000, #00ff66);
-  background-size: 800% 800%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: cosmicShift 6s infinite alternate ease-in-out;
+/* 8) Flip Card (Front + Back) */
+.flip-card {
+  perspective: 800px;
 }
-@keyframes cosmicShift {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-/* ----------------------------------------------------------
-   10) «РАСТЕКАНИЕ» (LIQUID BLOB) ДЛЯ БЛОКОВ
------------------------------------------------------------ */
-.liquid-blob {
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
   position: relative;
+}
+.flip-card-front, 
+.flip-card-back {
+  position: absolute;
+  width: 100%; 
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0; left: 0;
+  border-radius: 8px;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: var(--bg-panel);
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/************************************************************
+ * НОВЫЕ ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ (ПРИМЕРЫ)
+ ************************************************************/
+/* Glitch-текст (пример, если решите использовать .glitch-text) */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  animation: glitch-skew 2s infinite alternate;
+  overflow: visible;
+}
+@keyframes glitch-skew {
+  0%   { transform: skew(0deg); }
+  20%  { transform: skew(3deg); }
+  40%  { transform: skew(-3deg); }
+  60%  { transform: skew(2deg); }
+  80%  { transform: skew(-2deg); }
+  100% { transform: skew(0deg); }
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
   overflow: hidden;
 }
-.liquid-blob::before {
-  content: "";
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle at 50% 50%, var(--color-secondary) 20%, transparent 70%);
-  animation: blobMove 8s infinite ease-in-out;
-  opacity: 0.3;
+.glitch-text::before {
+  color: var(--color-secondary);
+  z-index: -1;
+  animation: glitch-offset 2s infinite alternate;
 }
-@keyframes blobMove {
-  0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.2) translate(10%, 10%); }
-  100% { transform: scale(1) translate(0, 0); }
+.glitch-text::after {
+  color: var(--color-primary);
+  z-index: -2;
+  animation: glitch-offset 1.5s infinite alternate;
+}
+@keyframes glitch-offset {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(-2px, 2px); }
+  100% { transform: translate(2px, -2px); }
 }
 
-/* ----------------------------------------------------------
-   11) Плавающие элементы «в воздухе» (PARALLAX LAYERS)
-   Можно сделать несколько слоёв (layer-1, layer-2 и т.д.)
-   и двигать их разной скоростью.
------------------------------------------------------------ */
-@keyframes floatLayer1 {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
+/* Пульсирующий ободок для forum-section */
+.forum-section.pulse-border {
+  position: relative;
+  z-index: 1;
 }
-@keyframes floatLayer2 {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(10px); }
-  100% { transform: translateY(0px); }
+.forum-section.pulse-border::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: -2px;
+  right: -2px; bottom: -2px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px var(--color-primary);
+  animation: pulseBorder 2.5s infinite ease-in-out;
+  pointer-events: none;
+  opacity: 0.6;
 }
-.layer-1 {
-  animation: floatLayer1 6s infinite ease-in-out;
+@keyframes pulseBorder {
+  0%, 100% { box-shadow: 0 0 15px var(--color-primary); }
+  50%      { box-shadow: 0 0 25px var(--color-secondary); }
 }
-.layer-2 {
-  animation: floatLayer2 8s infinite ease-in-out;
+
+/* «Вспышка» при наведении (для .news-item и т.п.) */
+.news-item.flash-hover:hover {
+  animation: flashEffect 0.7s ease-in-out;
+}
+@keyframes flashEffect {
+  0%   { box-shadow: 0 0 10px var(--color-primary); }
+  50%  { box-shadow: 0 0 30px var(--color-highlight); }
+  100% { box-shadow: 0 0 10px var(--color-primary); }
+}
+
+/************************************************************
+ * АДАПТИВНОСТЬ
+ ************************************************************/
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo h1 {
+    margin-bottom: 10px;
+  }
+  main {
+    padding: 10px;
+  }
+  .forum-sections {
+    flex-direction: column;
+    align-items: center;
+  }
+  .forum-section {
+    width: 90%;
+    max-width: 400px;
+  }
+  .auth-forms {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  .forum-section {
+    width: 95%;
+  }
+  .auth-forms form {
+    max-width: 280px;
+  }
+  nav.top-nav ul {
+    gap: 10px;
+  }
 }
