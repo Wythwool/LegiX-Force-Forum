@@ -9,20 +9,25 @@
 <body>
 
 <!-- 
-  1) Параллакс-фон (несколько слоёв). 
-  Для упрощения — один div с классом .parallax-bg, 
-  где фоновое изображение или градиент на CSS.
+  - Многослойный параллакс-фон. 
+  - Каждый слой смещается с разной скоростью в CSS.
 -->
-<div class="parallax-bg"></div>
+<div class="parallax-bg-layer layer-1"></div>
+<div class="parallax-bg-layer layer-2"></div>
+
+<!--
+  Контейнер для эффекта «дождь из пикселей».
+  Внутрь JS будет генерировать тонкие вертикальные полосы
+-->
+<div class="pixel-rain-container"></div>
 
 <!-- 
-  2) Контейнер для снежинок (JS будет добавлять <div class="snowflake">)
+  Контейнер для снежинок (JS будет добавлять <div class="snowflake">)
 -->
 <div id="snow-container"></div>
 
 <!-- 
-  3) Шапка (header). 
-  Можем добавить какое-то «светящееся» лого, меню.
+  Шапка (header) + меню
 -->
 <header>
   <div class="logo">
@@ -30,25 +35,30 @@
   </div>
   <nav class="top-nav">
     <ul>
+      <!-- Основные вкладки -->
       <li><a href="#" data-tab="home" class="active-tab">Главная</a></li>
       <li><a href="#" data-tab="forum">Форум</a></li>
       <li><a href="#" data-tab="news">Новости</a></li>
       <li><a href="#" data-tab="profile">Профиль</a></li>
       <li><a href="#" data-tab="login">Вход / Регистрация</a></li>
-      <!-- Прямая ссылка на Discord -->
       <li><a href="https://discord.gg/legixforce" target="_blank" class="discord-link">Discord</a></li>
+
+      <!-- Новые вкладки -->
+      <li><a href="#" data-tab="adminRequests">Заявки на администрацию</a></li>
+      <li><a href="#" data-tab="appeals">Апелляции</a></li>
+      <li><a href="#" data-tab="complaintsPlayers">Жалобы: Игроки/STAFF</a></li>
+      <li><a href="#" data-tab="complaintsAdmins">Жалобы: Коорды/Админы</a></li>
+      <li><a href="#" data-tab="ideas">Идеи</a></li>
+      <li><a href="#" data-tab="administration">Администрация</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- 
-  4) Основная часть (main). 
-  Здесь наши вкладки (home, forum, news, profile, login).
--->
+<!-- Основная часть (main). Здесь наши вкладки -->
 <main>
   <!-- Вкладка: Home (Главная) -->
   <section id="home" class="tab-section active-section">
-    <h2 class="neon-title">Добро пожаловать в сообщество LegiX Force!</h2>
+    <h2 class="neon-title laser-text">Добро пожаловать в сообщество LegiX Force!</h2>
     <p>
       Мы рады видеть вас в этом месте, полном неонового свечения и зимней магии.
       Обсуждайте игры, мемы, участвуйте в ивентах и просто наслаждайтесь атмосферой!
@@ -56,26 +66,32 @@
       Не забудьте зайти к нам в 
       <a href="https://discord.gg/legixforce" target="_blank">Discord</a>!
     </p>
-    <div class="highlight-box">
+    <div class="highlight-box rainbow-border hover-float">
       <h3>Последнее объявление</h3>
       <p>
-        Совсем скоро пройдёт большой **Новогодний ивент**!  
-        Подробности ищите во вкладке <strong>«Новости»</strong> или в 
+        Совсем скоро пройдёт большой <strong>Новогодний ивент!</strong><br/>
+        Подробности ищите во вкладке «<strong>Новости</strong>» или в 
         <a href="https://discord.gg/legixforce" target="_blank">нашем Discord</a>.
       </p>
     </div>
   </section>
 
-  <!-- Вкладка: Форум -->
+  <!-- Вкладка: Форум (Осталось без изменений) -->
   <section id="forum" class="tab-section">
     <h2>Разделы Форума</h2>
     <div class="forum-sections">
-      <!-- Пример одного раздела -->
-      <div class="forum-section threeD-hover">
-        <h3>Раздел: Общий чат</h3>
-        <p>Общайтесь на любые темы, скидывайте мемы, узнавайте новости и т.д.</p>
-        <button class="open-topics" data-section-id="section1">Перейти к темам</button>
-        <!-- Модальное окно со списком тем -->
+      <div class="forum-section threeD-hover flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Раздел: Общий чат</h3>
+            <p>Общайтесь на любые темы, скидывайте мемы, узнавайте новости и т.д.</p>
+            <button class="open-topics" data-section-id="section1">Перейти к темам</button>
+          </div>
+          <div class="flip-card-back">
+            <h3>Сюрприз!</h3>
+            <p>привет от GlaShyiz ;)</p>
+          </div>
+        </div>
         <div class="modal" id="section1-modal">
           <div class="modal-content">
             <span class="close">&times;</span>
@@ -89,7 +105,6 @@
         </div>
       </div>
 
-      <!-- Второй раздел -->
       <div class="forum-section threeD-hover">
         <h3>Раздел: Оффтоп</h3>
         <p>Разговоры на любые темы, не относящиеся к проектам.</p>
@@ -106,7 +121,6 @@
         </div>
       </div>
 
-      <!-- Третий раздел -->
       <div class="forum-section threeD-hover">
         <h3>Раздел: Новости и события</h3>
         <p>Последние анонсы, патчноуты, мероприятия, турниры, ивенты.</p>
@@ -123,6 +137,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -196,6 +211,196 @@
       </form>
     </div>
   </section>
+
+  <!-- ==========================
+       НОВЫЕ ВКЛАДКИ (разделы)
+       ========================== -->
+
+  <!-- 1) Заявки на администрацию -->
+  <section id="adminRequests" class="tab-section">
+    <h2>Заявки на администрацию</h2>
+    <div class="forum-sections">
+      <!-- Карточка 1 -->
+      <div class="forum-section threeD-hover flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Admin Request #1</h3>
+            <p>Описание заявки на администрацию.</p>
+            <button class="open-topics" data-section-id="adminReq1">Подробнее</button>
+          </div>
+          <div class="flip-card-back">
+            <h3>Сюрприз</h3>
+            <p>Задняя сторона карточки Admin Request #1</p>
+          </div>
+        </div>
+        <!-- Модальное окно -->
+        <div class="modal" id="adminReq1-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Заявка #1 (Подробнее)</h3>
+            <ul>
+              <li>Причина подачи заявки</li>
+              <li>Опыт</li>
+              <li>Контактные данные</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Карточка 2 -->
+      <div class="forum-section threeD-hover">
+        <h3>Admin Request #2</h3>
+        <p>Ещё одна заявка на администрацию.</p>
+        <button class="open-topics" data-section-id="adminReq2">Подробнее</button>
+        <div class="modal" id="adminReq2-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Заявка #2 (Подробнее)</h3>
+            <p>Полная информация по заявке #2.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2) Апелляции -->
+  <section id="appeals" class="tab-section">
+    <h2>Апелляции</h2>
+    <div class="forum-sections">
+      <div class="forum-section threeD-hover flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Appeal Ticket #101</h3>
+            <p>Апелляция на снятие наказания.</p>
+            <button class="open-topics" data-section-id="appeal1">Подробнее</button>
+          </div>
+          <div class="flip-card-back">
+            <h3>Backside</h3>
+            <p>Задняя сторона апелляции #101.</p>
+          </div>
+        </div>
+        <div class="modal" id="appeal1-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Appeal #101 (Подробнее)</h3>
+            <ul>
+              <li>Причина бана</li>
+              <li>Дата инцидента</li>
+              <li>Комментарий от модератора</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) Жалобы на игроков/STAFF -->
+  <section id="complaintsPlayers" class="tab-section">
+    <h2>Жалобы на игроков/STAFF</h2>
+    <div class="forum-sections">
+      <div class="forum-section threeD-hover">
+        <h3>Complaint #501</h3>
+        <p>Жалоба на игрока за нарушение правил.</p>
+        <button class="open-topics" data-section-id="compPlayers501">Подробнее</button>
+        <div class="modal" id="compPlayers501-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Жалоба #501</h3>
+            <ul>
+              <li>Скриншоты нарушений</li>
+              <li>Логи чата</li>
+              <li>Комментарий от STAFF</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4) Жалоба на координаторов/администраторов -->
+  <section id="complaintsAdmins" class="tab-section">
+    <h2>Жалобы на координаторов / админов</h2>
+    <div class="forum-sections">
+      <div class="forum-section threeD-hover flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Admin/Coord Complaint #777</h3>
+            <p>Жалоба на превышение полномочий.</p>
+            <button class="open-topics" data-section-id="adminComp777">Подробнее</button>
+          </div>
+          <div class="flip-card-back">
+            <h3>Внимание</h3>
+            <p>Это серьёзная жалоба!</p>
+          </div>
+        </div>
+        <div class="modal" id="adminComp777-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Жалоба #777</h3>
+            <p>Тут указываются детали, доказательства и т.д.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5) Идеи -->
+  <section id="ideas" class="tab-section">
+    <h2>Идеи</h2>
+    <div class="forum-sections">
+      <div class="forum-section threeD-hover">
+        <h3>Idea #1</h3>
+        <p>Предложение улучшить систему квестов.</p>
+        <button class="open-topics" data-section-id="idea1">Подробнее</button>
+        <div class="modal" id="idea1-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Idea #1</h3>
+            <ul>
+              <li>Суть идеи</li>
+              <li>Ожидаемый результат</li>
+              <li>Пример реализации</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="forum-section threeD-hover">
+        <h3>Idea #2</h3>
+        <p>Новый ивент "Discord Karaoke Night".</p>
+        <button class="open-topics" data-section-id="idea2">Подробнее</button>
+        <div class="modal" id="idea2-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Idea #2</h3>
+            <p>Описание идеи «Karaoke Night» в нашем Discord.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6) Администрация -->
+  <section id="administration" class="tab-section">
+    <h2>Администрация</h2>
+    <div class="forum-sections">
+      <div class="forum-section threeD-hover">
+        <h3>Admin Board Info</h3>
+        <p>Список текущих администраторов, их контакты, расписание.</p>
+        <button class="open-topics" data-section-id="adminBoard1">Открыть</button>
+        <div class="modal" id="adminBoard1-modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Состав Администрации</h3>
+            <ul>
+              <li>Главный админ: ...</li>
+              <li>Старшие админы: ...</li>
+              <li>Младшие админы: ...</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- Футер -->
@@ -204,8 +409,8 @@
     <a href="https://discord.gg/legixforce" target="_blank">discord.gg/legixforce</a>
   </p>
 </footer>
-  
-  <!-- Подключаем JS -->
+
+<!-- Подключаем JS (app.js) -->
 <script src="app.js"></script>
 </body>
 </html>
