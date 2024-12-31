@@ -36,381 +36,188 @@
   <nav class="top-nav">
     <ul>
       <!-- Основные вкладки -->
-      <li><a href="#" data-tab="home" class="active-tab">Главная</a></li>
-      <li><a href="#" data-tab="forum">Форум</a></li>
-      <li><a href="#" data-tab="news">Новости</a></li>
-      <li><a href="#" data-tab="profile">Профиль</a></li>
-      <li><a href="#" data-tab="login">Вход / Регистрация</a></li>
-      <li><a href="https://discord.gg/legixforce" target="_blank" class="discord-link">Discord</a></li>
-
-      <!-- Новые вкладки -->
-      <li><a href="#" data-tab="adminRequests">Заявки на администрацию</a></li>
-      <li><a href="#" data-tab="appeals">Апелляции</a></li>
-      <li><a href="#" data-tab="complaintsPlayers">Жалобы: Игроки/STAFF</a></li>
-      <li><a href="#" data-tab="complaintsAdmins">Жалобы: Коорды/Админы</a></li>
-      <li><a href="#" data-tab="ideas">Идеи</a></li>
-      <li><a href="#" data-tab="administration">Администрация</a></li>
+      <li><a href="#main-forum" class="active-tab">Главный форум</a></li>
+      <li><a href="#applications">Заявки в персонал</a></li>
+      <li><a href="#appeals">Апелляции</a></li>
+      <li><a href="#complaints-admins">Жалобы на администрацию</a></li>
+      <li><a href="#complaints-players">Жалобы на игроков</a></li>
+      <li><a href="#complaints-senior-admins">Жалобы на старшую администрацию</a></li>
+      <li><a href="#suggestions">Предложения</a></li>
+      <li><a href="#bans">Баны</a></li>
     </ul>
   </nav>
 </header>
 
 <!-- Основная часть (main). Здесь наши вкладки -->
 <main>
-  <!-- Вкладка: Home (Главная) -->
-  <section id="home" class="tab-section active-section">
-    <h2 class="neon-title laser-text">Добро пожаловать в сообщество LegiX Force!</h2>
-    <p>
-      Мы рады видеть вас в этом месте, полном неонового свечения и зимней магии.
-      Обсуждайте игры, мемы, участвуйте в ивентах и просто наслаждайтесь атмосферой!
-      <br/>
-      Не забудьте зайти к нам в 
-      <a href="https://discord.gg/legixforce" target="_blank">Discord</a>!
-    </p>
-    <div class="highlight-box rainbow-border hover-float">
-      <h3>Последнее объявление</h3>
-      <p>
-        Совсем скоро пройдёт большой <strong>Новогодний ивент!</strong><br/>
-        Подробности ищите во вкладке «<strong>Новости</strong>» или в 
-        <a href="https://discord.gg/legixforce" target="_blank">нашем Discord</a>.
-      </p>
+  <section id="main-forum" class="tab-section active-section">
+    <h2>Добро пожаловать на главный форум LegiX Force!</h2>
+    <p>Обсуждайте последние новости, предложения и участвуйте в обсуждениях игровых серверов. Вступайте в сообщество и находите новых друзей!</p>
+
+    <div class="forum-categories">
+      <div class="category">
+        <h3>Главный раздел</h3>
+        <div class="category-box">
+          <div class="category-item">
+            <h4>Новости проекта</h4>
+            <p>Самое важное о проекте LegiX Force.</p>
+          </div>
+          <div class="category-item">
+            <h4>Технический раздел</h4>
+            <p>Сообщения о багах и предложениях.</p>
+          </div>
+          <div class="category-item">
+            <h4>Бан-лист проекта</h4>
+            <p>Узнайте о блокировках на всех серверах.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <h3>Игровые серверы</h3>
+        <div class="category-box">
+          <div class="category-item">
+            <h4>The Force Conflict</h4>
+            <p>Обсуждения серверов, события и обновления.</p>
+          </div>
+          <div class="category-item">
+            <h4>Rise of the Republic</h4>
+            <p>Новые режимы и игровые турниры.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <h3>Популярный контент</h3>
+        <div class="category-box">
+          <div class="category-item">
+            <h4>Жалобы</h4>
+            <p>Обсуждения жалоб на администраторов и игроков.</p>
+          </div>
+          <div class="category-item">
+            <h4>Заявки</h4>
+            <p>Подача заявок в администрацию.</p>
+          </div>
+          <div class="category-item">
+            <h4>Предложения</h4>
+            <p>Ваши идеи и предложения для развития проекта.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Вкладка: Форум (Осталось без изменений) -->
-  <section id="forum" class="tab-section">
-    <h2>Разделы Форума</h2>
+  <section id="applications" class="tab-section">
+    <h2>Заявки в персонал</h2>
+    <p>Заполните заявку, чтобы стать частью команды LegiX Force. Следуйте инструкциям, чтобы подать правильную заявку.</p>
     <div class="forum-sections">
-      <div class="forum-section threeD-hover flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <h3>Раздел: Общий чат</h3>
-            <p>Общайтесь на любые темы, скидывайте мемы, узнавайте новости и т.д.</p>
-            <button class="open-topics" data-section-id="section1">Перейти к темам</button>
-          </div>
-          <div class="flip-card-back">
-            <h3>Сюрприз!</h3>
-            <p>привет от GlaShyiz ;)</p>
-          </div>
-        </div>
-        <div class="modal" id="section1-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Темы в «Общий чат»</h3>
-            <ul>
-              <li><a href="#">Приветствие новых участников</a></li>
-              <li><a href="#">Любимые игры участников LegiX Force</a></li>
-              <li><a href="#">Обсуждаем новые мемы</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="forum-section threeD-hover">
-        <h3>Раздел: Оффтоп</h3>
-        <p>Разговоры на любые темы, не относящиеся к проектам.</p>
-        <button class="open-topics" data-section-id="section2">Перейти к темам</button>
-        <div class="modal" id="section2-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Темы в «Оффтоп»</h3>
-            <ul>
-              <li><a href="#">Шутки и юмор</a></li>
-              <li><a href="#">Случайные обсуждения</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="forum-section threeD-hover">
-        <h3>Раздел: Новости и события</h3>
-        <p>Последние анонсы, патчноуты, мероприятия, турниры, ивенты.</p>
-        <button class="open-topics" data-section-id="section3">Перейти к темам</button>
-        <div class="modal" id="section3-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Темы в «Новости и события»</h3>
-            <ul>
-              <li><a href="#">Анонс Новогоднего ивента</a></li>
-              <li><a href="#">Обновление 2.0 для сервера</a></li>
-              <li><a href="#">Новый бот LegiXBot</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Вкладка: Новости -->
-  <section id="news" class="tab-section">
-    <h2>Новости LegiX Force</h2>
-    <div class="news-list">
-      <article class="news-item sparkle-bg">
-        <h3>Грандиозный ивент «Winter Bot Bash 2024»</h3>
-        <p>
-          С 25 декабря стартует <strong>«Winter Bot Bash 2024»</strong>, где вы сможете
-          участвовать в викторинах, собирать праздничные награды и даже выиграть доступ
-          к закрытым каналам! Подключайтесь к 
-          <a href="https://discord.gg/legixforce" target="_blank">нашему Discord</a>, 
-          чтобы не пропустить детали!
-        </p>
-      </article>
-
-      <article class="news-item threeD-hover">
-        <h3>Обновление дизайна сайта</h3>
-        <p>
-          Мы полностью переработали внешний вид, добавив анимации и эффекты. Теперь всё
-          сияет, сверкает и дарит праздничное настроение!
-        </p>
-      </article>
-
-      <article class="news-item threeD-hover">
-        <h3>Скоро: улучшение системы ЛС</h3>
-        <ul>
-          <li>Улучшенный поиск по перепискам</li>
-          <li>Возможность прикреплять файлы и ссылки</li>
-          <li>Новые смайлы и гифки</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <!-- Вкладка: Профиль -->
-  <section id="profile" class="tab-section">
-    <h2>Ваш профиль</h2>
-    <div class="profile-info">
-      <p>Ник: <span id="profile-username">Guest</span></p>
-      <p>Статус: <span id="profile-status">Гость</span></p>
-    </div>
-  </section>
-
-  <!-- Вкладка: Вход / Регистрация -->
-  <section id="login" class="tab-section">
-    <h2>Вход / Регистрация</h2>
-    <div class="auth-forms">
-      <!-- Форма входа -->
-      <form id="login-form">
-        <h3>Вход</h3>
-        <label for="login-username">Логин</label>
-        <input type="text" id="login-username" required />
-        <label for="login-password">Пароль</label>
-        <input type="password" id="login-password" required />
-        <button type="submit" class="button-animated-border">Войти</button>
-      </form>
-
-      <!-- Форма регистрации -->
-      <form id="register-form">
-        <h3>Регистрация</h3>
-        <label for="register-username">Логин</label>
-        <input type="text" id="register-username" required />
-        <label for="register-password">Пароль</label>
-        <input type="password" id="register-password" required />
-        <label for="register-email">Email</label>
-        <input type="email" id="register-email" required />
-        <button type="submit" class="button-animated-border">Зарегистрироваться</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- ==========================
-       НОВЫЕ ВКЛАДКИ (разделы)
-       ========================== -->
-
-  <!-- 1) Заявки на администрацию -->
-  <section id="adminRequests" class="tab-section">
-    <h2>Заявки на администрацию</h2>
-    <div class="forum-sections">
-      <!-- Карточка 1 -->
-      <div class="forum-section threeD-hover flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <h3>Admin Request #1</h3>
-            <p>Описание заявки на администрацию.</p>
-            <button class="open-topics" data-section-id="adminReq1">Подробнее</button>
-          </div>
-          <div class="flip-card-back">
-            <h3>Сюрприз</h3>
-            <p>Задняя сторона карточки Admin Request #1</p>
-          </div>
-        </div>
-        <!-- Модальное окно -->
-        <div class="modal" id="adminReq1-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Заявка #1 (Подробнее)</h3>
-            <ul>
-              <li>Причина подачи заявки</li>
-              <li>Опыт</li>
-              <li>Контактные данные</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- Карточка 2 -->
-      <div class="forum-section threeD-hover">
-        <h3>Admin Request #2</h3>
-        <p>Ещё одна заявка на администрацию.</p>
-        <button class="open-topics" data-section-id="adminReq2">Подробнее</button>
-        <div class="modal" id="adminReq2-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Заявка #2 (Подробнее)</h3>
-            <p>Полная информация по заявке #2.</p>
-          </div>
-        </div>
+      <div class="forum-section">
+        <h3>Форма заявки</h3>
+        <p>Укажите свои данные, опыт и причину подачи заявки.</p>
+        <a href="https://forms.gle/4ymnRoCssJ9g6f7D8" target="_blank" class="button-animated-border">Подать заявку</a>
       </div>
     </div>
   </section>
 
-  <!-- 2) Апелляции -->
   <section id="appeals" class="tab-section">
     <h2>Апелляции</h2>
+    <p>Если вы считаете, что были наказаны несправедливо, подайте апелляцию, приложив необходимые доказательства.</p>
     <div class="forum-sections">
-      <div class="forum-section threeD-hover flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <h3>Appeal Ticket #101</h3>
-            <p>Апелляция на снятие наказания.</p>
-            <button class="open-topics" data-section-id="appeal1">Подробнее</button>
-          </div>
-          <div class="flip-card-back">
-            <h3>Backside</h3>
-            <p>Задняя сторона апелляции #101.</p>
-          </div>
-        </div>
-        <div class="modal" id="appeal1-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Appeal #101 (Подробнее)</h3>
-            <ul>
-              <li>Причина бана</li>
-              <li>Дата инцидента</li>
-              <li>Комментарий от модератора</li>
-            </ul>
-          </div>
-        </div>
+      <div class="forum-section">
+        <h3>Форма апелляции</h3>
+        <p>Укажите причину апелляции и приложите доказательства.</p>
+        <a href="https://forms.gle/dvNDnmFtUPWtfyu47" target="_blank" class="button-animated-border">Подать апелляцию</a>
       </div>
     </div>
   </section>
 
-  <!-- 3) Жалобы на игроков/STAFF -->
-  <section id="complaintsPlayers" class="tab-section">
-    <h2>Жалобы на игроков/STAFF</h2>
+  <section id="complaints-admins" class="tab-section">
+    <h2>Жалобы на администрацию</h2>
+    <p>Сообщите о действиях администрации, если они нарушают правила проекта. Пожалуйста, приложите доказательства.</p>
     <div class="forum-sections">
-      <div class="forum-section threeD-hover">
-        <h3>Complaint #501</h3>
-        <p>Жалоба на игрока за нарушение правил.</p>
-        <button class="open-topics" data-section-id="compPlayers501">Подробнее</button>
-        <div class="modal" id="compPlayers501-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Жалоба #501</h3>
-            <ul>
-              <li>Скриншоты нарушений</li>
-              <li>Логи чата</li>
-              <li>Комментарий от STAFF</li>
-            </ul>
-          </div>
-        </div>
+      <div class="forum-section">
+        <h3>Форма жалобы</h3>
+        <p>Опишите проблему и приложите доказательства.</p>
+        <a href="https://forms.gle/qKoYfrg2KSq31VtG9" target="_blank" class="button-animated-border">Подать жалобу</a>
       </div>
     </div>
   </section>
 
-  <!-- 4) Жалоба на координаторов/администраторов -->
-  <section id="complaintsAdmins" class="tab-section">
-    <h2>Жалобы на координаторов / админов</h2>
+  <section id="complaints-players" class="tab-section">
+    <h2>Жалобы на игроков</h2>
+    <p>Если вы столкнулись с некорректным поведением игроков, опишите ситуацию в этом разделе, указав все детали.</p>
     <div class="forum-sections">
-      <div class="forum-section threeD-hover flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <h3>Admin/Coord Complaint #777</h3>
-            <p>Жалоба на превышение полномочий.</p>
-            <button class="open-topics" data-section-id="adminComp777">Подробнее</button>
-          </div>
-          <div class="flip-card-back">
-            <h3>Внимание</h3>
-            <p>Это серьёзная жалоба!</p>
-          </div>
-        </div>
-        <div class="modal" id="adminComp777-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Жалоба #777</h3>
-            <p>Тут указываются детали, доказательства и т.д.</p>
-          </div>
-        </div>
+      <div class="forum-section">
+        <h3>Форма жалобы</h3>
+        <p>Укажите ник игрока, причину жалобы и приложите доказательства.</p>
+        <a href="https://forms.gle/7yXeYreeqzq6Kvtk7" target="_blank" class="button-animated-border">Подать жалобу</a>
       </div>
     </div>
   </section>
 
-  <!-- 5) Идеи -->
-  <section id="ideas" class="tab-section">
-    <h2>Идеи</h2>
+  <section id="complaints-senior-admins" class="tab-section">
+    <h2>Жалобы на старшую администрацию</h2>
+    <p>Этот раздел предназначен для жалоб на представителей старшей администрации. Приложите все доказательства.</p>
     <div class="forum-sections">
-      <div class="forum-section threeD-hover">
-        <h3>Idea #1</h3>
-        <p>Предложение улучшить систему квестов.</p>
-        <button class="open-topics" data-section-id="idea1">Подробнее</button>
-        <div class="modal" id="idea1-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Idea #1</h3>
-            <ul>
-              <li>Суть идеи</li>
-              <li>Ожидаемый результат</li>
-              <li>Пример реализации</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="forum-section threeD-hover">
-        <h3>Idea #2</h3>
-        <p>Новый ивент "Discord Karaoke Night".</p>
-        <button class="open-topics" data-section-id="idea2">Подробнее</button>
-        <div class="modal" id="idea2-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Idea #2</h3>
-            <p>Описание идеи «Karaoke Night» в нашем Discord.</p>
-          </div>
-        </div>
+      <div class="forum-section">
+        <h3>Форма жалобы</h3>
+        <p>Опишите действия старшей администрации и приложите подтверждения.</p>
+        <a href="https://forms.gle/qKoYfrg2KSq31VtG9" target="_blank" class="button-animated-border">Подать жалобу</a>
       </div>
     </div>
   </section>
 
-  <!-- 6) Администрация -->
-  <section id="administration" class="tab-section">
-    <h2>Администрация</h2>
+  <section id="suggestions" class="tab-section">
+    <h2>Предложения</h2>
+    <p>Есть идея, как улучшить проект? Оставьте свои предложения здесь. Мы рассматриваем каждое из них!</p>
     <div class="forum-sections">
-      <div class="forum-section threeD-hover">
-        <h3>Admin Board Info</h3>
-        <p>Список текущих администраторов, их контакты, расписание.</p>
-        <button class="open-topics" data-section-id="adminBoard1">Открыть</button>
-        <div class="modal" id="adminBoard1-modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Состав Администрации</h3>
-            <ul>
-              <li>Главный админ: ...</li>
-              <li>Старшие админы: ...</li>
-              <li>Младшие админы: ...</li>
-            </ul>
-          </div>
-        </div>
+      <div class="forum-section">
+        <h3>Форма предложения</h3>
+        <p>Опишите свою идею и ожидаемый результат.</p>
+        <button>Отправить предложение</button>
       </div>
     </div>
   </section>
 
+  <section id="bans" class="tab-section">
+    <h2>Баны</h2>
+    <p>Просмотрите список заблокированных пользователей или найдите информацию о текущих банах.</p>
+    <div class="forum-sections">
+      <div class="forum-section">
+        <h3>Список банов</h3>
+        <p>Перейдите по ссылке, чтобы увидеть полную информацию о банах.</p>
+        <a href="https://unionteams.ru/bans" target="_blank" class="button-animated-border">Посмотреть список банов</a>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!-- Футер -->
 <footer>
-  <p>© 2024 LegiX Force | Наш Discord: 
-    <a href="https://discord.gg/legixforce" target="_blank">discord.gg/legixforce</a>
-  </p>
+  <p>© 2024 LegiX Force | Наш Discord: <a href="https://discord.gg/legixforce" target="_blank">discord.gg/legixforce</a></p>
 </footer>
 
-<!-- Подключаем JS (app.js) -->
-<script src="app.js"></script>
+<script>
+  // Переключение вкладок
+  const navLinks = document.querySelectorAll('.top-nav a');
+  const sections = document.querySelectorAll('main .tab-section');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const targetId = link.getAttribute('href').slice(1);
+
+      // Удаляем active-class
+      navLinks.forEach(nav => nav.classList.remove('active-tab'));
+      sections.forEach(sec => sec.classList.remove('active-section'));
+
+      // Добавляем active-class
+      link.classList.add('active-tab');
+      document.getElementById(targetId).classList.add('active-section');
+
+      // Прокручиваем наверх к секции
+      document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
 </body>
 </html>
